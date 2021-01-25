@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EntryTableViewCell" rowHeight="221" id="sPs-2Q-67X" customClass="EntryTableViewCell" customModule="RedditApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="456" height="221"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sPs-2Q-67X" id="nQb-SL-Da1">
+                <rect key="frame" x="0.0" y="0.0" width="456" height="221"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1eZ-pw-qti">
+                        <rect key="frame" x="31" y="154.5" width="394" height="21.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Author_nickname" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zol-qg-UMS">
+                        <rect key="frame" x="15" y="15" width="126" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                        <color key="textColor" red="0.96206921339999996" green="0.30312228200000002" blue="0.13860109449999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 hours ago" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u1a-4P-OcR">
+                        <rect key="frame" x="358.5" y="15" width="82.5" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                        <color key="textColor" red="0.96207350489999999" green="0.2992174923" blue="0.1347153187" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SO0-wW-jjD">
+                        <rect key="frame" x="183" y="44.5" width="90" height="100"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="100" id="KFj-OL-HJK"/>
+                        </constraints>
+                        <state key="normal" image="thumbnail-placeholder"/>
+                        <connections>
+                            <action selector="thumbnailButtonTapped:" destination="sPs-2Q-67X" eventType="touchUpInside" id="v91-Gu-BUM"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="3125" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MW0-PV-pDV">
+                        <rect key="frame" x="404" y="186" width="37" height="20"/>
+                        <color key="backgroundColor" red="0.96207350489999999" green="0.2992174923" blue="0.1347153187" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" red="0.9332844615" green="0.93336725229999995" blue="0.93321532009999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstItem="zol-qg-UMS" firstAttribute="top" secondItem="nQb-SL-Da1" secondAttribute="top" constant="15" id="5Ds-23-YhT"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="1eZ-pw-qti" secondAttribute="trailing" constant="15" id="F55-MA-T8x"/>
+                    <constraint firstItem="u1a-4P-OcR" firstAttribute="top" secondItem="nQb-SL-Da1" secondAttribute="top" constant="15" id="H2W-uo-DgZ"/>
+                    <constraint firstAttribute="trailing" secondItem="u1a-4P-OcR" secondAttribute="trailing" constant="15" id="KSH-rg-W03"/>
+                    <constraint firstItem="MW0-PV-pDV" firstAttribute="trailing" secondItem="u1a-4P-OcR" secondAttribute="trailing" id="UUq-HO-0ml"/>
+                    <constraint firstItem="1eZ-pw-qti" firstAttribute="leading" secondItem="nQb-SL-Da1" secondAttribute="leadingMargin" constant="15" id="Ugw-5a-8Z6"/>
+                    <constraint firstItem="u1a-4P-OcR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="zol-qg-UMS" secondAttribute="trailing" constant="5" id="Xw9-aS-oCf"/>
+                    <constraint firstAttribute="bottom" secondItem="MW0-PV-pDV" secondAttribute="bottom" constant="15" id="bEG-3t-RDu"/>
+                    <constraint firstItem="MW0-PV-pDV" firstAttribute="top" secondItem="1eZ-pw-qti" secondAttribute="bottom" constant="10" id="d6b-cR-2gi"/>
+                    <constraint firstItem="SO0-wW-jjD" firstAttribute="centerX" secondItem="nQb-SL-Da1" secondAttribute="centerX" id="dBE-m5-XNr"/>
+                    <constraint firstItem="SO0-wW-jjD" firstAttribute="top" secondItem="zol-qg-UMS" secondAttribute="bottom" constant="10" id="iUZ-YR-m5t"/>
+                    <constraint firstItem="1eZ-pw-qti" firstAttribute="top" secondItem="SO0-wW-jjD" secondAttribute="bottom" constant="10" id="kzW-fJ-tka"/>
+                    <constraint firstItem="zol-qg-UMS" firstAttribute="leading" secondItem="nQb-SL-Da1" secondAttribute="leading" constant="15" id="nBk-Ie-n2B"/>
+                    <constraint firstItem="zol-qg-UMS" firstAttribute="centerY" secondItem="u1a-4P-OcR" secondAttribute="centerY" id="uMk-Nh-wK3"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="authorLabel" destination="zol-qg-UMS" id="evx-2e-dt8"/>
+                <outlet property="commentsCountLabel" destination="MW0-PV-pDV" id="Al4-o2-3pn"/>
+                <outlet property="entryTitleLabel" destination="1eZ-pw-qti" id="UyP-ul-Sla"/>
+                <outlet property="thumbnailButton" destination="SO0-wW-jjD" id="lsv-gz-jIK"/>
+                <outlet property="timeSpentLabel" destination="u1a-4P-OcR" id="PUK-J8-FhH"/>
+            </connections>
+            <point key="canvasLocation" x="59.420289855072468" y="129.57589285714286"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="thumbnail-placeholder" width="90" height="90"/>
+    </resources>
+</document>

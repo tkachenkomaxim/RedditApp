@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3nU-Gs-M0I">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Reddit top posts-->
+        <scene sceneID="Rzy-vh-k48">
+            <objects>
+                <tableViewController id="JnK-id-55z" customClass="EntriesListViewController" customModule="RedditApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="110" sectionHeaderHeight="28" sectionFooterHeight="28" id="8Nv-gY-T2q">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <connections>
+                            <outlet property="dataSource" destination="JnK-id-55z" id="fYL-X2-4BC"/>
+                            <outlet property="delegate" destination="JnK-id-55z" id="0OI-LA-xXP"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Reddit top posts" id="H4x-8N-phB"/>
+                    <connections>
+                        <segue destination="ma5-4J-lNz" kind="show" identifier="showImageSegue" id="80S-Ml-P0T"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JRY-r2-52B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2528" y="534"/>
+        </scene>
+        <!--Full Image View Controller-->
+        <scene sceneID="Zgr-kZ-BiF">
+            <objects>
+                <viewController id="ma5-4J-lNz" customClass="FullImageViewController" customModule="RedditApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9Pg-em-PPQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="lHR-Wj-HN1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="sXr-89-EGe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MoH-yj-Cpk">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="SgX-zr-R0t"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="MoH-yj-Cpk" firstAttribute="top" secondItem="SgX-zr-R0t" secondAttribute="top" id="6nb-s3-RFl"/>
+                            <constraint firstItem="SgX-zr-R0t" firstAttribute="trailing" secondItem="MoH-yj-Cpk" secondAttribute="trailing" id="OS8-KD-c9o"/>
+                            <constraint firstItem="MoH-yj-Cpk" firstAttribute="leading" secondItem="SgX-zr-R0t" secondAttribute="leading" id="exy-6v-rfO"/>
+                            <constraint firstItem="SgX-zr-R0t" firstAttribute="bottom" secondItem="MoH-yj-Cpk" secondAttribute="bottom" id="fVT-QV-Txc"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Qsa-ba-l2V"/>
+                    <connections>
+                        <outlet property="webView" destination="MoH-yj-Cpk" id="sSh-4Q-K2Y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jsy-cD-RMV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3341" y="534"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Bbr-TR-SzI">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3nU-Gs-M0I" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="erJ-Qa-afC">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="JnK-id-55z" kind="relationship" relationship="rootViewController" id="MCy-Hv-ffy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VQ8-XP-gjL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1716" y="534"/>
+        </scene>
+    </scenes>
+</document>
