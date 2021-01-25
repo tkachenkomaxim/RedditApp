@@ -12,6 +12,7 @@ class EntriesListViewController: UITableViewController {
 
     static let showImageSegueIdentifier = "showImageSegue"
     let viewModel = EntriesListViewModel(withClient: RedditProvider())
+    fileprivate var activityIndicator: LoadMoreActivityIndicator!
     
     let loadingView = UIView()
     let spinner = UIActivityIndicatorView()
@@ -63,12 +64,6 @@ class EntriesListViewController: UITableViewController {
         self.navigationController?.setToolbarHidden(true, animated: true)
     }
     
-    @objc func moreButtonTapped() {
-        
-        self.moreButton.isEnabled = false
-        self.loadEntries()
-    }
-    
     private func loadEntries() {
 
         setLoadingScreen()
@@ -79,40 +74,35 @@ class EntriesListViewController: UITableViewController {
     }
     
     private func configureViews() {
-        
-        func configureTableView() {
-            tableView.tableFooterView = UIView()
-            tableView.register(UINib(nibName: "EnrtyTableViewCell", bundle: nil), forCellReuseIdentifier: EntryTableViewCell.cellId)
-            self.tableView.rowHeight = UITableView.automaticDimension
-            self.tableView.estimatedRowHeight = 110.0
-
-            self.tableFooterView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 80)
-            self.tableFooterView.addSubview(self.moreButton)
-            
-            self.moreButton.frame = self.tableFooterView.bounds
-            self.moreButton.setTitle("More...", for: [])
-            self.moreButton.setTitle("Loading...", for: .disabled)
-            self.moreButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-            self.moreButton.addTarget(self, action: #selector(EntriesListViewController.moreButtonTapped), for: .touchUpInside)
-        }
-        
-        func configureToolbar() {
-
-            self.configureErrorLabelFrame()
-
-            let errorItem = UIBarButtonItem(customView: self.errorLabel)
-            let flexSpaceItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-            let retryItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(EntriesListViewController.retryFromErrorToolbar))
-            let fixedSpaceItem = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-            let closeItem = UIBarButtonItem(image: UIImage(named: "close-button"), style: .plain, target: self, action: #selector(EntriesListViewController.dismissErrorToolbar))
-            
-            fixedSpaceItem.width = 12
-            
-            self.toolbarItems = [errorItem, flexSpaceItem, retryItem, fixedSpaceItem, closeItem]
-        }
-        
+        self.view.backgroundColor = UIColor(hexString: "EEEEEE")
+        self.tableView.backgroundColor = UIColor(hexString: "EEEEEE")
         configureTableView()
         configureToolbar()
+    }
+    
+    func configureTableView() {
+        activityIndicator = LoadMoreActivityIndicator(scrollView: tableView, spacingFromLastCell: 10, spacingFromLastCellWhenLoadMoreActionStart: 35)
+        tableView.tableFooterView = UIView()
+        tableView.register(UINib(nibName: "EnrtyTableViewCell", bundle: nil), forCellReuseIdentifier: EntryTableViewCell.cellId)
+        self.tableView.rowHeight = UITableView.automaticDimension
+        self.tableView.estimatedRowHeight = 110.0
+        
+        self.tableFooterView.frame = CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 80)
+    }
+    
+    func configureToolbar() {
+        
+        self.configureErrorLabelFrame()
+        
+        let errorItem = UIBarButtonItem(customView: self.errorLabel)
+        let flexSpaceItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let retryItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(EntriesListViewController.retryFromErrorToolbar))
+        let fixedSpaceItem = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        let closeItem = UIBarButtonItem(image: UIImage(named: "close-button"), style: .plain, target: self, action: #selector(EntriesListViewController.dismissErrorToolbar))
+        
+        fixedSpaceItem.width = 12
+        
+        self.toolbarItems = [errorItem, flexSpaceItem, retryItem, fixedSpaceItem, closeItem]
     }
     
     private func configureErrorLabelFrame() {
@@ -122,6 +112,7 @@ class EntriesListViewController: UITableViewController {
     
     private func entriesReloaded() {
         
+        self.activityIndicator.stop()
         removeLoadingScreen()
         self.tableView.reloadData()
         
@@ -189,5 +180,19 @@ extension EntriesListViewController: EntryTableViewCellDelegate {
         
         self.urlToDisplay = url
         self.performSegue(withIdentifier: EntriesListViewController.showImageSegueIdentifier, sender: self)
+    }
+}
+
+extension EntriesListViewController {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        activityIndicator.start {
+            self.viewModel.loadEntries {
+                DispatchQueue.main.async { [weak self] in
+                    self?.activityIndicator.stop()
+                    self?.entriesReloaded()
+                }
+            }
+            
+        }
     }
 }
